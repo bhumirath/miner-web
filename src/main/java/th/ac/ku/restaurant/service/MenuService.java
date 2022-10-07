@@ -31,6 +31,8 @@ public class MenuService {
         headers.add("authorization", "Bearer " + token);
         HttpEntity entity = new HttpEntity(headers);
 
+        String url = "http://localhost:8090/menu";
+
         ResponseEntity<MenuDto[]> response =
                 restTemplate.exchange(url, HttpMethod.GET,
                         entity, MenuDto[].class);
@@ -46,6 +48,8 @@ public class MenuService {
         headers.add("authorization", "Bearer " + token);
         headers.add("Content-Type", MediaType.APPLICATION_JSON.toString());
         HttpEntity entity = new HttpEntity(menu,headers);
+
+        String url = "http://localhost:8090/menu";
 
         ResponseEntity<MenuDto> response =
                 restTemplate.exchange(url, HttpMethod.POST,
