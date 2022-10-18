@@ -19,4 +19,7 @@ public class MenuDto {
 
     @NotBlank
     private String category;
+
+    @NotNull
+    private double stock;
 }
