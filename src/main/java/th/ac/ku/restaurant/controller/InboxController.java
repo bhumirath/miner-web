@@ -14,7 +14,7 @@ public class InboxController {
 
     @GetMapping("/inbox")
     public String getInboxPage(Model model) {
-        model.addAttribute("menus", service.getMenus());
+        model.addAttribute("menus", service.getAll());
         return "inbox";
     }
 
