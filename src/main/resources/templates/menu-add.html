@@ -30,18 +30,18 @@
                  th:errors="*{price}"></div>
         </div>
         <div class="mb-3">
-            <label for="inputCategory">Category</label>
+            <label for="inputCategory">Grade</label>
             <select id="inputCategory" class="form-select" th:field="*{category}">
-                <option value="Appetizer" selected>Appetizer</option>
-                <option value="Main Course">Main Course</option>
-                <option value="Dessert">Dessert</option>
+                <option value="A" selected>A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
             </select>
             <div class="alert alert-warning"
                  th:if="${#fields.hasErrors('category')}"
                  th:errors="*{category}"></div>
         </div>
         <div class="mb-3">
-            <label for="inputStock">Stock</label>
+            <label for="inputStock">Stock(ตัน)</label>
             <input id="inputStock" type="text" class="form-control"
                    th:field="*{stock}">
             <div class="alert alert-warning" th:if="${#fields.hasErrors('stock')}"
