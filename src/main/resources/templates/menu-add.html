@@ -23,7 +23,7 @@
                  th:errors="*{name}"></div>
         </div>
         <div class="mb-3">
-            <label for="inputPrice">Price</label>
+            <label for="inputPrice">Price (ต่อหน่วย)</label>
             <input id="inputPrice" type="text" class="form-control"
                    th:field="*{price}">
             <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}"
