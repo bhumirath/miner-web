@@ -78,7 +78,7 @@
                 <table class="table email-table no-wrap table-hover v-middle mb-0 font-14">
 
                   <tbody>
-
+<!--
                   <tr th:each="menu : ${menus}">
                     <td th:text="${menu.name}"></td>
                     <td th:text="${menu.price}"></td>
@@ -86,6 +86,28 @@
                     <td th:text="${menu.stock}"></td>
                     <td><a class="btn btn-primary" th:href="@{/menu/add}">Edit</a></td>
                   </tr>
+                  -->
+
+                    <tr th:each="menu : ${menus}">
+                      <td th:text="จาก"></td>
+                      <td th:text="${menu.user.firstName}"></td>
+                      <td th:text="${menu.name}"></td>
+                      <td th:text="${menu.price}"></td>
+                      <td th:text="${menu.category}"></td>
+                      <td th:text="${menu.stock}"></td>
+                      <td><a class="btn btn-primary" th:href="@{/menu/add}">Edit</a></td>
+                    </tr>
+<!--
+                  <div sec:authorize="hasRole('ROLE_USER')">
+                    <tr th:each="menu : ${menus.get}">
+                      <td th:text="${menu.name}"></td>
+                      <td th:text="${menu.price}"></td>
+                      <td th:text="${menu.category}"></td>
+                      <td th:text="${menu.stock}"></td>
+                      <td><a class="btn btn-primary" th:href="@{/menu/add}">Edit</a></td>
+                    </tr>
+                  </div>
+                  -->
 
                   </tbody>
                 </table>

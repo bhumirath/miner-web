@@ -6,8 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import th.ac.ku.restaurant.model.Menu;
+import th.ac.ku.restaurant.model.User;
+import th.ac.ku.restaurant.repository.UserRepository;
 import th.ac.ku.restaurant.service.MenuService;
 import th.ac.ku.restaurant.dto.MenuDto;
+import th.ac.ku.restaurant.service.SignupService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -19,6 +22,12 @@ public class MenuController {
 
     @Autowired
     private MenuService service;
+
+    @Autowired
+    private SignupService signupService;
+
+    @Autowired
+    private UserRepository userRepository;
 
 //    @GetMapping
 //    public List<Menu> getAll(){
@@ -62,13 +71,14 @@ public class MenuController {
     }
 
     @GetMapping("/add")
-    public String getMenuForm(MenuDto menuDto) {
+    public String getMenuForm(Model model) {
+        model.addAttribute("newMenu", new Menu());
+        model.addAttribute("userSet", signupService.getAll());
         return "menu-add";
     }
 
     @PostMapping("/add")
-    public String addMenu(@ModelAttribute Menu menu, BindingResult result,
-                          Model model) {
+    public String addMenu(@Valid @ModelAttribute("newMenu") Menu menu, BindingResult result, Model model) {
         if (result.hasErrors())
             return "menu-add";
 

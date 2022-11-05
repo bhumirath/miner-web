@@ -3,9 +3,9 @@ package th.ac.ku.restaurant.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -23,9 +23,20 @@ public class User {
     private String email;
     private String role;
 
+    @OneToMany(fetch= FetchType.LAZY, mappedBy="user")
+    private Set<Menu> menuSet = new HashSet<Menu>(0);
+
     //  ให้ Generate..
     //       - Getters และ Setters ทั้งหมด
 
+
+    public Set<Menu> getMenuSet() {
+        return menuSet;
+    }
+
+    public void setMenuSet(Set<Menu> menuSet) {
+        this.menuSet = menuSet;
+    }
 
     public UUID getId() {
         return id;

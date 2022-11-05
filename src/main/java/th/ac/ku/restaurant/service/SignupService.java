@@ -5,8 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import th.ac.ku.restaurant.dto.SignupDto;
+import th.ac.ku.restaurant.model.Menu;
 import th.ac.ku.restaurant.model.User;
 import th.ac.ku.restaurant.repository.UserRepository;
+
+import java.util.List;
 
 @Service
 public class SignupService {
@@ -39,6 +42,10 @@ public class SignupService {
 
     public User getUser(String username) {
         return repository.findByUsername(username);
+    }
+
+    public List<User> getAll(){
+        return repository.findAll();
     }
 }
 
