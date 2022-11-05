@@ -48,7 +48,6 @@ public class MenuService {
         record.setName(requestBody.getName());
         record.setPrice(requestBody.getPrice());
         record.setCategory(requestBody.getCategory());
-        record.setUser(requestBody.getUser());
 
         record = menuRepository.save(record);
         return record;

@@ -11,10 +11,15 @@
 <div th:insert="fragments/header :: header"></div>
 
 <div class="container w-50 p-3">
-    <h1 class="display-5">Add Menu</h1>
+    <h1 class="display-5">Add Order</h1>
 
-    <form action="#" th:action="@{/menu/add}" th:object="${menuDto}" method="POST">
+    <form action="#" th:action="@{/order/add}" th:object="${newOrder}" method="POST">
 
+        <div class="mb-3">
+            <select th:field="*{user.id}" class="form-control">
+                <option th:each="user: ${userSet}" th:value="${user.id}" th:text="${user.email}"></option>
+            </select>
+        </div>
         <div class="mb-3">
             <label for="inputName">Name</label>
             <input id="inputName" type="text" class="form-control"

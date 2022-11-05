@@ -24,18 +24,18 @@ public class User {
     private String role;
 
     @OneToMany(fetch= FetchType.LAZY, mappedBy="user")
-    private Set<Menu> menuSet = new HashSet<Menu>(0);
+    private Set<Order> orderSet = new HashSet<>(0);
 
     //  ให้ Generate..
     //       - Getters และ Setters ทั้งหมด
 
 
-    public Set<Menu> getMenuSet() {
-        return menuSet;
+    public Set<Order> getOrderSet() {
+        return orderSet;
     }
 
-    public void setMenuSet(Set<Menu> menuSet) {
-        this.menuSet = menuSet;
+    public void setOrderSet(Set<Order> orderSet) {
+        this.orderSet = orderSet;
     }
 
     public UUID getId() {

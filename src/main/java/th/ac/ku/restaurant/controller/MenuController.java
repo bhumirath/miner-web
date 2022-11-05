@@ -71,14 +71,12 @@ public class MenuController {
     }
 
     @GetMapping("/add")
-    public String getMenuForm(Model model) {
-        model.addAttribute("newMenu", new Menu());
-        model.addAttribute("userSet", signupService.getAll());
+    public String getMenuForm(MenuDto menuDto) {
         return "menu-add";
     }
 
     @PostMapping("/add")
-    public String addMenu(@Valid @ModelAttribute("newMenu") Menu menu, BindingResult result, Model model) {
+    public String addMenu(@ModelAttribute Menu menu, BindingResult result, Model model) {
         if (result.hasErrors())
             return "menu-add";
 

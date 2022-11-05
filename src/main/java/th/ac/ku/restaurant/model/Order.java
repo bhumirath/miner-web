@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-public class Menu {
+public class Order {
     @Id
     @GeneratedValue
     private UUID id;
@@ -13,6 +13,18 @@ public class Menu {
     private double price;
     private String category;
     private double stock;
+
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public UUID getId() {
         return id;
