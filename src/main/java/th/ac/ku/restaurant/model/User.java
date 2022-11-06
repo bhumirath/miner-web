@@ -26,9 +26,6 @@ public class User {
     @OneToMany(fetch= FetchType.LAZY, mappedBy="user")
     private Set<Order> orderSet = new HashSet<>(0);
 
-    @OneToMany(fetch= FetchType.LAZY, mappedBy="user")
-    private Set<WorkOrder> workOrderSet = new HashSet<>(0);
-
     //  ให้ Generate..
     //       - Getters และ Setters ทั้งหมด
 

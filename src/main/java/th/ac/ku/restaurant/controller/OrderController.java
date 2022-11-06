@@ -1,25 +1,21 @@
 package th.ac.ku.restaurant.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import th.ac.ku.restaurant.model.Menu;
 import th.ac.ku.restaurant.model.Order;
-import th.ac.ku.restaurant.model.User;
-import th.ac.ku.restaurant.repository.MenuRepository;
-import th.ac.ku.restaurant.repository.OrderRepository;
 import th.ac.ku.restaurant.repository.UserRepository;
 import th.ac.ku.restaurant.service.MenuService;
 import th.ac.ku.restaurant.service.OrderService;
 import th.ac.ku.restaurant.service.SignupService;
-import th.ac.ku.restaurant.service.UserDetailsServiceImp;
 
 import javax.validation.Valid;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/order")
@@ -33,22 +29,10 @@ public class OrderController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private MenuRepository menuRepository;
-
-    @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
-    private UserDetailsServiceImp userDetailsServiceImp;
-
-    @GetMapping("/add/{name}")
-    public String getMenuForm(Model model, @PathVariable(value = "name") String name) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName().toString();
+    @GetMapping("/add")
+    public String getMenuForm(Model model) {
         model.addAttribute("newOrder", new Order());
-        model.addAttribute("orderName", menuRepository.findByName(name));
-        model.addAttribute("userIdd", userRepository.findByUsername(username));
+        model.addAttribute("userSet", signupService.getAll());
         return "order-add";
     }
 
