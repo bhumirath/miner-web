@@ -16,6 +16,8 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>ชื่อสินค้า</th>
+            <th>ชื่อลูกค้า</th>
             <th>สถานะงาน</th>
             <th>ตำแหน่งงาน</th>
             <th>วันเริ่มงาน</th>
@@ -25,6 +27,7 @@
         <tbody>
         <tr th:each="work : ${works}">
             <td th:text="${work.order.name}"></td>
+            <td th:text="${work.user.username}"></td>
             <td th:text="${work.workStatus}"></td>
             <td th:text="${work.workRole}"></td>
             <td th:text="${work.startDate}"></td>

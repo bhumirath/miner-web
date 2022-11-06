@@ -82,7 +82,7 @@
                  th:errors="*{category}"></div>
         </div>
         <div class="mb-3">
-            <label for="inputStock">จำนวน(ตัน)</label>
+            <label for="inputStock">จำนวนที่ต้องการสั่ง(ตัน)</label>
             <input id="inputStock" type="text" class="form-control"
                    th:field="*{stock}">
             <div class="alert alert-warning" th:if="${#fields.hasErrors('stock')}"
