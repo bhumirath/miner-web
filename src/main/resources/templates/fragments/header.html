@@ -39,6 +39,11 @@
                         <a class="nav-link" th:href="@{/work}">work</a>
                     </li>
                 </div>
+                <div sec:authorize="hasRole('ROLE_USER')">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/status}">ดูสถานะสินค้า</a>
+                    </li>
+                </div>
             </ul>
         </div>
         <div sec:authorize="isAuthenticated()">
