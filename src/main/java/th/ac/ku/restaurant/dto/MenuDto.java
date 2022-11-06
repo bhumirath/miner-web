@@ -1,13 +1,11 @@
 package th.ac.ku.restaurant.dto;
 
 import lombok.Data;
-import th.ac.ku.restaurant.model.User;
 
-import java.util.UUID;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
+import java.util.UUID;
 
 @Data
 public class MenuDto {

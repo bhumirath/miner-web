@@ -5,9 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import th.ac.ku.restaurant.model.User;
 import th.ac.ku.restaurant.dto.SignupDto;
 import th.ac.ku.restaurant.service.SignupService;
 

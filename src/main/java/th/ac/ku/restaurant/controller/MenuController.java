@@ -4,17 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import th.ac.ku.restaurant.dto.MenuDto;
 import th.ac.ku.restaurant.model.Menu;
-import th.ac.ku.restaurant.model.User;
 import th.ac.ku.restaurant.repository.UserRepository;
 import th.ac.ku.restaurant.service.MenuService;
-import th.ac.ku.restaurant.dto.MenuDto;
 import th.ac.ku.restaurant.service.SignupService;
-
-import javax.validation.Valid;
-import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/menu")

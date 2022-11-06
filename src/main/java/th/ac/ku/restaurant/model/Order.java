@@ -17,6 +17,8 @@ public class Order {
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
+    @OneToOne(mappedBy = "order")
+    private WorkOrder workOrder;
 
     public User getUser() {
         return user;
@@ -64,5 +66,13 @@ public class Order {
 
     public void setStock(double stock) {
         this.stock = stock;
+    }
+
+    public WorkOrder getWorkOrder() {
+        return workOrder;
+    }
+
+    public void setWorkOrder(WorkOrder workOrder) {
+        this.workOrder = workOrder;
     }
 }
