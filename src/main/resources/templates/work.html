@@ -32,6 +32,8 @@
             <td th:text="${work.workRole}"></td>
             <td th:text="${work.startDate}"></td>
             <td th:text="${work.finishDate}"></td>
+            <td><a class="btn btn-primary" th:href="@{/update/{workId}(workId=${work.id})}">เสร็จ</a></td>
+            <td><a class="btn btn-primary" th:href="@{/update2/{workId}(workId=${work.id})}">ยังไม่เสร็จ</a></td>
         </tr>
         </tbody>
     </table>
