@@ -29,8 +29,8 @@
       <td th:text="${menu.category}"></td>
       <td th:text="${menu.stock}"></td>
       <div sec:authorize="hasRole('ROLE_ADMIN')">
-        <td><a class="btn btn-primary" th:href="@{/menu/edit/{name}(name=${menu.name})}">Edit</a></td>
-        <td><a class="btn btn-primary" th:href="@{/menu/delete/{name}(name=${menu.name})}">Delete</a></td>
+        <td><a class="btn btn-outline-info" th:href="@{/menu/edit/{name}(name=${menu.name})}">Edit</a></td>
+        <td><a class="btn btn-outline-danger" th:href="@{/menu/delete/{name}(name=${menu.name})}">Delete</a></td>
       </div>
       <div sec:authorize="hasRole('ROLE_USER')">
         <td><a class="btn btn-primary" th:href="@{/order/add/{name}(name=${menu.name})}">สั่งสินค้า</a></td>

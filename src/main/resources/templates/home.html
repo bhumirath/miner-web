@@ -17,7 +17,7 @@
         <span th:text="${greeting}"></span>, you!
     </p>
     <div sec:authorize="isAuthenticated()">
-        <p>Khun <b><span sec:authentication="name"></span></b></p>
+        <p>คุณ <b><span sec:authentication="name"></span></b></p>
     </div>
     <div sec:authorize="isAnonymous()">
         <a class="btn btn-primary" th:href="@{/login}">Login</a>

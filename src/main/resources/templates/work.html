@@ -27,13 +27,13 @@
         <tbody>
         <tr th:each="work : ${works}">
             <td th:text="${work.order.name}"></td>
-            <td th:text="${work.user.username}"></td>
-            <td th:text="${work.workStatus}"></td>
+            <td th:text="${work.user.firstName}"></td>
+            <td class="text-success" th:text="${work.workStatus}"></td>
             <td th:text="${work.workRole}"></td>
             <td th:text="${work.startDate}"></td>
             <td th:text="${work.finishDate}"></td>
-            <td><a class="btn btn-primary" th:href="@{/update/{workId}(workId=${work.id})}">เสร็จ</a></td>
-            <td><a class="btn btn-primary" th:href="@{/update2/{workId}(workId=${work.id})}">ยังไม่เสร็จ</a></td>
+            <td><a class="btn btn-outline-success" th:href="@{/update/{workId}(workId=${work.id})}">เสร็จ</a></td>
+            <td><a class="btn btn-outline-danger" th:href="@{/update2/{workId}(workId=${work.id})}">ยังไม่เสร็จ</a></td>
         </tr>
         </tbody>
     </table>

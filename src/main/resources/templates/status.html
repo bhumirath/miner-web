@@ -52,9 +52,9 @@
 
                                     <tr th:each="status : ${orders}">
                                         <td th:text="${status.order.name}"></td>
-                                        <td th:text="${status.user.username}"></td>
+                                        <td th:text="${status.user.firstName}"></td>
                                         <td th:text="${status.finishDate}"></td>
-                                        <td th:text="${status.workStatus}"></td>
+                                        <td class="text-success" th:text="${status.workStatus}"></td>
                                     </tr>
                                     <!--
                                                       <div sec:authorize="hasRole('ROLE_USER')">
