@@ -6,6 +6,8 @@ import th.ac.ku.restaurant.model.Order;
 import th.ac.ku.restaurant.repository.OrderRepository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class OrderService {
@@ -24,6 +26,8 @@ public class OrderService {
     public Order getMenuByName(String name) {
         return orderRepository.findByName(name);
     }
+
+    public Optional<Order> getOrderById(UUID id){return  orderRepository.findById(id); }
 
     public List<Order> getMenuByCategory(String category) {
         return orderRepository.findByCategory(category);

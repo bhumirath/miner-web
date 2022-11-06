@@ -1,6 +1,8 @@
 package th.ac.ku.restaurant.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -17,6 +19,8 @@ public class Order {
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
+    @OneToOne(mappedBy = "order")
+    private WorkOrder workOrder;
 
     public User getUser() {
         return user;
@@ -64,5 +68,13 @@ public class Order {
 
     public void setStock(double stock) {
         this.stock = stock;
+    }
+
+    public WorkOrder getWorkOrder() {
+        return workOrder;
+    }
+
+    public void setWorkOrder(WorkOrder workOrder) {
+        this.workOrder = workOrder;
     }
 }

@@ -15,11 +15,46 @@
 
     <form action="#" th:action="@{/order/add}" th:object="${newOrder}" method="POST">
 
+        <!--<span th:text="${newOrder.user.firstName} + ' ' + ${newOrder.user.lastName}">ผู้สั่งออเดอร์</span>-->
+        <!--
         <div class="mb-3">
             <select th:field="*{user.id}" class="form-control">
                 <option th:each="user: ${userSet}" th:value="${user.id}" th:text="${user.email}"></option>
             </select>
         </div>
+        -->
+        <!--
+        <div class="mb-3">
+            <select th:field="*{user.id}" class="form-control" th:value="${userN.id}"></select>
+        </div>
+        -->
+
+        <div class="mb-3">
+            <label>ผู้สั่ง Order</label>
+            <select th:field="*{user.id}" class="form-control" >
+                <option th:value="${userIdd.id}" th:text="${userIdd.firstName}+' '+${userIdd.lastName}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>ชื่อสินค้า</label>
+            <select th:field="*{name}" class="form-control">
+                <option th:value="${orderName.name}" th:text="${orderName.name}"></option>
+            </select>
+        </div>
+        <!--
+        <div class="mb-3">
+            <h1>Name : <th:block th:text="${orderName.name}" th:field="*{name}" th:value="${orderName.name}"/></h1>
+        </div>
+
+        <div class="mb-3">
+            <label>ผู้สั่ง Order</label>
+            <input type="text" class="form-control"
+                   th:field="*{user.id}" th:text="${userIdd.firstName}+' '+${userIdd.lastName}" th:value="${userIdd.id}">
+        </div>
+        -->
+        <!--<span th:text="${newOrder.name}">ชื่อสินค้า</span>-->
+        <!--
         <div class="mb-3">
             <label for="inputName">Name</label>
             <input id="inputName" type="text" class="form-control"
@@ -27,6 +62,7 @@
             <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}"
                  th:errors="*{name}"></div>
         </div>
+        -->
         <div class="mb-3">
             <label for="inputPrice">Price</label>
             <input id="inputPrice" type="text" class="form-control"
