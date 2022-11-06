@@ -95,4 +95,16 @@ public class MenuController {
         return "redirect:/menu";
     }
 
+    @GetMapping("/delete/{name}")
+    public String deleteOrder(Model model,@PathVariable(value = "name") String name) {
+        Menu menu = menuRepository.findByName(name);
+        //Menu menu = menuRepository.getById(id);
+        //Order order = orderRepository.getById(id);
+        //workOrderRepository.findByOrderId(id);
+
+        menuRepository.delete(menu);
+        //workOrderRepository.deleteById(id);
+        return "redirect:/menu";
+    }
+
 }
