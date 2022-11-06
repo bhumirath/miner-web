@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Miner Web Application</title>
+    <link th:rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<div th:insert="fragments/header :: header"></div>
+
+<div class="container">
+    <h1 class="display-5">สถานะงาน</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>สถานะงาน</th>
+            <th>ตำแหน่งงาน</th>
+            <th>วันเริ่มงาน</th>
+            <th>วันสิ้นสุดงาน</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="work : ${works}">
+            <td th:text="${work.workStatus}"></td>
+            <td th:text="${work.workRole}"></td>
+            <td th:text="${work.startDate}"></td>
+            <td th:text="${work.finishDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

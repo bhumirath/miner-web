@@ -24,24 +24,6 @@
                 <span class="d-none d-md-block"> INBOX</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" id="sent-tab" data-toggle="tab" aria-controls="sent" href="#sent" role="tab" aria-selected="false">
-                <span class="d-block d-md-none"><i class="ti-export"></i></span>
-                <span class="d-none d-md-block">SENT</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="spam-tab" data-toggle="tab" aria-controls="spam" href="#spam" role="tab" aria-selected="false">
-                <span class="d-block d-md-none"><i class="ti-panel"></i></span>
-                <span class="d-none d-md-block">SPAM</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="delete-tab" data-toggle="tab" aria-controls="delete" th:href="@{/de}" role="tab" aria-selected="false">
-                <span class="d-block d-md-none"><i class="ti-trash"></i></span>
-                <span class="d-none d-md-block">DELETED</span>
-              </a>
-            </li>
           </ul>
         </div>
         <div class="tab-content" id="myTabContent">
@@ -59,15 +41,6 @@
                         <span class="ml-2 font-normal text-dark"> Compose</span>
                       </a>
                     </li>
-
-                    <li class="list-inline-item text-danger">
-                      <a href="#">
-                        <button class="btn btn-circle btn-danger text-white" href="javascript:void(0)">
-                          <i class="fa fa-trash"></i>
-                        </button>
-                        <span class="ml-2 font-normal text-dark">Delete</span>
-                      </a>
-                    </li>
                   </ul>
                 </div>
               </div>
@@ -77,6 +50,13 @@
               <!-- Mail list-->
               <div class="table-responsive">
                 <table class="table email-table no-wrap table-hover v-middle mb-0 font-14">
+                  <tbody>
+                  <th>ชื่อผู้สั่ง</th>
+                  <th>ชื่อสินค้า</th>
+                  <th>ราคาสินค้า(unit)</th>
+                  <th>ชนิดสินค้า</th>
+                  <th>จำนวนสินค้า</th>
+                  </tbody>
 
                   <tbody>
 <!--
@@ -92,9 +72,9 @@
                     <tr th:each="order : ${orders}">
                       <td th:text="จาก + ' ' +${order.user.firstName}"></td>
                       <td th:text="${order.name}"></td>
-                      <td th:text="${order.price}"></td>
+                      <td th:text="${order.price}+' '+บาท"></td>
                       <td th:text="${order.category}"></td>
-                      <td th:text="${order.stock}"></td>
+                      <td th:text="${order.stock}+' '+ตัน"></td>
                       <!--<td th:field="*{order.id}"></td>-->
                       <td><a class="btn btn-primary" th:href="@{/delegate/{orderId}(orderId=${order.id})}">Delegate</a></td>
                     </tr>

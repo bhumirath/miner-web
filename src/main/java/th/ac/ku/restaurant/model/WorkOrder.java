@@ -1,5 +1,7 @@
 package th.ac.ku.restaurant.model;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -22,6 +24,7 @@ public class WorkOrder {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date finishDate;
 
+    @NotFound(action = NotFoundAction.IGNORE)
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "order_id",referencedColumnName = "id")
     private Order order;
