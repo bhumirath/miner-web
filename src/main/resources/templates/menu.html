@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Miner Web Application</title>
@@ -28,7 +28,12 @@
       <td th:text="${menu.price}"></td>
       <td th:text="${menu.category}"></td>
       <td th:text="${menu.stock}"></td>
-      <td><a class="btn btn-primary" th:href="@{/order/add/{name}(name=${menu.name})}">สั่งสินค้า</a></td>
+      <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <td><a class="btn btn-primary" th:href="@{/menu/edit/{name}(name=${menu.name})}">Edit</a></td>
+      </div>
+      <div sec:authorize="hasRole('ROLE_USER')">
+        <td><a class="btn btn-primary" th:href="@{/order/add/{name}(name=${menu.name})}">สั่งสินค้า</a></td>
+      </div>
     </tr>
     </tbody>
   </table>

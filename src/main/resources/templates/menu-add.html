@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Miner Web Application</title>
@@ -11,9 +11,13 @@
 <div th:insert="fragments/header :: header"></div>
 
 <div class="container w-50 p-3">
-    <h1 class="display-5">Add Menu</h1>
+    <div th:if="${menu.id == null}">
+        <h1 class="display-5">Add Menu</h1></div>
+    <div th:unless="${menu.id == null}">
+        <h1 class="display-5">Edit Menu</h1></div>
 
-    <form action="#" th:action="@{/menu/add}" th:object="${menuDto}" method="POST">
+    <form action="#" th:action="@{/menu/add}" th:object="${menu}" method="POST">
+        <input type="hidden" th:field="*{id}"th:value="${menu.id}"/>
 
         <div class="mb-3">
             <label for="inputName">Name</label>
@@ -47,7 +51,12 @@
             <div class="alert alert-warning" th:if="${#fields.hasErrors('stock')}"
                  th:errors="*{stock}"></div>
         </div>
-        <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <button id="submit-button1" type="submit" class="btn btn-primary">Update</button>
+        </div>
+        <div sec:authorize="hasRole('ROLE_USER')">
+            <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>
 </div>
 

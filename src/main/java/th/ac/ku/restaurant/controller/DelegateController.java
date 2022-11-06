@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import th.ac.ku.restaurant.model.Order;
 import th.ac.ku.restaurant.model.WorkOrder;
 import th.ac.ku.restaurant.repository.OrderRepository;
+import th.ac.ku.restaurant.repository.WorkOrderRepository;
 import th.ac.ku.restaurant.service.OrderService;
 import th.ac.ku.restaurant.service.SignupService;
 import th.ac.ku.restaurant.service.WorkOrderService;
@@ -30,10 +31,13 @@ public class DelegateController {
     private OrderRepository orderRepository;
 
     @Autowired
+    private WorkOrderRepository workOrderRepository;
+
+    @Autowired
     private WorkOrderService workOrderService;
 
     @GetMapping("/delegate/{orderId}")
-    public String getDelegate(Model model,@PathVariable(value = "orderId") UUID id) {
+    public String getDelegate(Model model,@PathVariable(value = "orderId") int id) {
 
         Order order = orderRepository.getById(id);
         model.addAttribute("orders", order);
@@ -51,4 +55,15 @@ public class DelegateController {
         workOrderService.create(workOrder);
         return "redirect:/inbox"; //กลับหน้า inbox
     }
+
+    @GetMapping("/delete/{orderId}")
+    public String deleteOrder(Model model,@PathVariable(value = "orderId") int id) {
+        Order order = orderRepository.getById(id);
+        //workOrderRepository.findByOrderId(id);
+
+        orderRepository.delete(order);
+        //workOrderRepository.deleteById(id);
+        return "redirect:/inbox";
+    }
+
 }

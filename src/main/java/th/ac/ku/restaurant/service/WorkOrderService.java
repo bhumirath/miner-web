@@ -22,5 +22,5 @@ public class WorkOrderService {
         return workOrder;
     }
 
-    public WorkOrder getWorkOrderById(UUID id){return  workOrderRepository.findById(id).get(); }
+    public WorkOrder getWorkOrderById(int id){return  workOrderRepository.findById(id).get(); }
 }

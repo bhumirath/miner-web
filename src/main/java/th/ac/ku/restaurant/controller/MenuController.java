@@ -4,15 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import th.ac.ku.restaurant.dto.MenuDto;
 import th.ac.ku.restaurant.model.Menu;
+import th.ac.ku.restaurant.model.Order;
+import th.ac.ku.restaurant.repository.MenuRepository;
 import th.ac.ku.restaurant.repository.UserRepository;
 import th.ac.ku.restaurant.service.MenuService;
 import th.ac.ku.restaurant.service.SignupService;
+
+import javax.validation.Valid;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/menu")
@@ -26,6 +28,9 @@ public class MenuController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private MenuRepository menuRepository;
 
 //    @GetMapping
 //    public List<Menu> getAll(){
@@ -69,16 +74,24 @@ public class MenuController {
     }
 
     @GetMapping("/add")
-    public String getMenuForm(MenuDto menuDto) {
+    public String getMenuForm(Model model) {
+        model.addAttribute("menu",new Menu());
+        return "menu-add";
+    }
+
+    @GetMapping("/edit/{name}")
+    public String getEditMenu(Model model,@PathVariable("name") String name) {
+        Menu menu = menuRepository.findByName(name);
+        model.addAttribute("menu",menu);
         return "menu-add";
     }
 
     @PostMapping("/add")
-    public String addMenu(@ModelAttribute Menu menu, BindingResult result, Model model) {
+    public String addMenu(@Valid @ModelAttribute("menu") Menu menu, BindingResult result, Model model) {
         if (result.hasErrors())
             return "menu-add";
-
-        service.create(menu);
+        //model.addAttribute("menu", menu);
+        menuRepository.save(menu);
         return "redirect:/menu";
     }
 

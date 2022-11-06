@@ -9,18 +9,18 @@ import java.util.UUID;
 public class Menu {
     @Id
     @GeneratedValue
-    private UUID id;
+    private int  id;
 
     private String name;
     private double price;
     private String category;
     private double stock;
 
-    public UUID getId() {
+    public int  getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

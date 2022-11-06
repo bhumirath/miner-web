@@ -42,6 +42,13 @@
                 <option th:value="${orderName.name}" th:text="${orderName.name}"></option>
             </select>
         </div>
+
+        <div class="mb-3">
+            <label>ราคาต่อหน่วย</label>
+            <select th:field="*{price}" class="form-control">
+                <option th:value="${orderName.price}" th:text="${orderName.price}"></option>
+            </select>
+        </div>
         <!--
         <div class="mb-3">
             <h1>Name : <th:block th:text="${orderName.name}" th:field="*{name}" th:value="${orderName.name}"/></h1>
@@ -64,13 +71,6 @@
         </div>
         -->
         <div class="mb-3">
-            <label for="inputPrice">Price</label>
-            <input id="inputPrice" type="text" class="form-control"
-                   th:field="*{price}">
-            <div class="alert alert-warning" th:if="${#fields.hasErrors('price')}"
-                 th:errors="*{price}"></div>
-        </div>
-        <div class="mb-3">
             <label for="inputCategory">Grade</label>
             <select id="inputCategory" class="form-select" th:field="*{category}">
                 <option value="A" selected>A</option>
@@ -82,7 +82,7 @@
                  th:errors="*{category}"></div>
         </div>
         <div class="mb-3">
-            <label for="inputStock">Stock(ตัน)</label>
+            <label for="inputStock">จำนวน</label>
             <input id="inputStock" type="text" class="form-control"
                    th:field="*{stock}">
             <div class="alert alert-warning" th:if="${#fields.hasErrors('stock')}"

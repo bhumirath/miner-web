@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -14,7 +15,7 @@ import java.util.UUID;
 public class User {
     @Id
     @GeneratedValue
-    private UUID id;
+    private int id;
 
     private String username;
     private String password;
@@ -23,29 +24,20 @@ public class User {
     private String email;
     private String role;
 
-    @OneToMany(fetch= FetchType.LAZY, mappedBy="user")
-    private Set<Order> orderSet = new HashSet<>(0);
+    @OneToMany(mappedBy="user")
+    private List<Order> orderList;
 
-    @OneToMany(fetch= FetchType.LAZY, mappedBy="user")
-    private Set<WorkOrder> workOrderSet = new HashSet<>(0);
+    @OneToMany(mappedBy="user")
+    private List<WorkOrder> workOrderList;
 
     //  ให้ Generate..
     //       - Getters และ Setters ทั้งหมด
 
-
-    public Set<Order> getOrderSet() {
-        return orderSet;
-    }
-
-    public void setOrderSet(Set<Order> orderSet) {
-        this.orderSet = orderSet;
-    }
-
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

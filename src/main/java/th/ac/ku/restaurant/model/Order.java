@@ -1,24 +1,32 @@
 package th.ac.ku.restaurant.model;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
 public class Order {
     @Id
     @GeneratedValue
-    private UUID id;
+    private int id;
 
     private String name;
     private double price;
     private String category;
     private double stock;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE,fetch= FetchType.LAZY)
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name="user_id")
     private User user;
-    @OneToOne(mappedBy = "order")
-    private WorkOrder workOrder;
+
+    @OneToMany(mappedBy="order")
+    private List<WorkOrder> workOrderList;
 
     public User getUser() {
         return user;
@@ -28,11 +36,11 @@ public class Order {
         this.user = user;
     }
 
-    public UUID getId() {
+    public int  getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -68,11 +76,22 @@ public class Order {
         this.stock = stock;
     }
 
+    /*
     public WorkOrder getWorkOrder() {
         return workOrder;
     }
 
     public void setWorkOrder(WorkOrder workOrder) {
         this.workOrder = workOrder;
+    }
+
+     */
+
+    public List<WorkOrder> getWorkOrderList() {
+        return workOrderList;
+    }
+
+    public void setWorkOrderList(List<WorkOrder> workOrderList) {
+        this.workOrderList = workOrderList;
     }
 }

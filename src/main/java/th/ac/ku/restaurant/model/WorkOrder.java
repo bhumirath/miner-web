@@ -12,7 +12,7 @@ import java.util.UUID;
 public class WorkOrder {
     @Id
     @GeneratedValue
-    private UUID id;
+    private int id;
 
     private String workStatus;
 
@@ -24,21 +24,22 @@ public class WorkOrder {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date finishDate;
 
+    @ManyToOne(cascade = CascadeType.MERGE,fetch= FetchType.LAZY)
     @NotFound(action = NotFoundAction.IGNORE)
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "order_id",referencedColumnName = "id")
+    @JoinColumn(name="order_id")
     private Order order;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE,fetch= FetchType.LAZY)
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name="user_id")
     private User user;
 
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 

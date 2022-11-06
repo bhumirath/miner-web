@@ -24,6 +24,7 @@
         </thead>
         <tbody>
         <tr th:each="work : ${works}">
+            <td th:text="${work.order.name}"></td>
             <td th:text="${work.workStatus}"></td>
             <td th:text="${work.workRole}"></td>
             <td th:text="${work.startDate}"></td>

@@ -27,7 +27,7 @@ public class OrderService {
         return orderRepository.findByName(name);
     }
 
-    public Optional<Order> getOrderById(UUID id){return  orderRepository.findById(id); }
+    public Optional<Order> getOrderById(int id){return  orderRepository.findById(id); }
 
     public List<Order> getMenuByCategory(String category) {
         return orderRepository.findByCategory(category);

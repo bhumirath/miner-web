@@ -7,6 +7,8 @@ import th.ac.ku.restaurant.model.WorkOrder;
 import java.util.UUID;
 
 @Repository
-public interface WorkOrderRepository extends JpaRepository<WorkOrder, UUID> {
+public interface WorkOrderRepository extends JpaRepository<WorkOrder, Integer> {
+
+    //WorkOrder findByOrderId(UUID id);
 
 }

@@ -76,7 +76,9 @@
                       <td th:text="${order.category}"></td>
                       <td th:text="${order.stock}+' '+ตัน"></td>
                       <!--<td th:field="*{order.id}"></td>-->
-                      <td><a class="btn btn-primary" th:href="@{/delegate/{orderId}(orderId=${order.id})}">Delegate</a></td>
+                      <td><a class="btn btn-primary" th:href="@{/delegate/{orderId}(orderId=${order.id})}">แจกจ่ายงาน</a></td>
+                      &nbsp;
+                      <td><a class="btn btn-primary" th:href="@{/delete/{orderId}(orderId=${order.id})}">Delete</a></td>
                     </tr>
 <!--
                   <div sec:authorize="hasRole('ROLE_USER')">

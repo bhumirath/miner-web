@@ -38,12 +38,12 @@ public class MenuService {
         return menu;
     }
 
-    public Menu getMenuById(UUID id) {
+    public Menu getMenuById(int id) {
         return menuRepository.findById(id).get();
     }
 
     public Menu update(Menu requestBody) {
-        UUID id = requestBody.getId();
+        int id = requestBody.getId();
         Menu record = menuRepository.findById(id).get();
         record.setName(requestBody.getName());
         record.setPrice(requestBody.getPrice());
@@ -53,7 +53,7 @@ public class MenuService {
         return record;
     }
 
-    public Menu delete(UUID id) {
+    public Menu delete(int id) {
         Menu record = menuRepository.findById(id).get();
         menuRepository.deleteById(id);
         return record;
