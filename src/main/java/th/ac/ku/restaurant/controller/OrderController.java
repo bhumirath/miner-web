@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import th.ac.ku.restaurant.model.Menu;
 import th.ac.ku.restaurant.model.Order;
 import th.ac.ku.restaurant.repository.MenuRepository;
 import th.ac.ku.restaurant.repository.OrderRepository;
@@ -39,11 +40,12 @@ public class OrderController {
     private UserDetailsServiceImp userDetailsServiceImp;
 
     @GetMapping("/add/{name}")
-    public String getMenuForm(Model model, @PathVariable(value = "name") String name) {
+    public String getMenuForm(Model model, @PathVariable(value = "name") int id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName().toString();
+        Menu menu = menuRepository.getById(id);
         model.addAttribute("newOrder", new Order());
-        model.addAttribute("orderName", menuRepository.findByName(name));
+        model.addAttribute("orderName", menu);
         model.addAttribute("userIdd", userRepository.findByUsername(username));
         return "order-add";
     }

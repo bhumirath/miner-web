@@ -73,9 +73,7 @@
         <div class="mb-3">
             <label for="inputCategory">Grade</label>
             <select id="inputCategory" class="form-select" th:field="*{category}">
-                <option value="A" selected>A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
+                <option th:value="${orderName.category}" th:text="${orderName.category}"></option>
             </select>
             <div class="alert alert-warning"
                  th:if="${#fields.hasErrors('category')}"

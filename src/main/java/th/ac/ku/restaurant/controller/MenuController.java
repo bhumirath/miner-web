@@ -80,8 +80,8 @@ public class MenuController {
     }
 
     @GetMapping("/edit/{name}")
-    public String getEditMenu(Model model,@PathVariable("name") String name) {
-        Menu menu = menuRepository.findByName(name);
+    public String getEditMenu(Model model,@PathVariable("name") int id) {
+        Menu menu = menuRepository.getById(id);
         model.addAttribute("menu",menu);
         return "menu-add";
     }
@@ -96,8 +96,8 @@ public class MenuController {
     }
 
     @GetMapping("/delete/{name}")
-    public String deleteOrder(Model model,@PathVariable(value = "name") String name) {
-        Menu menu = menuRepository.findByName(name);
+    public String deleteOrder(Model model,@PathVariable(value = "name") int id) {
+        Menu menu = menuRepository.findById(id).get();
         //Menu menu = menuRepository.getById(id);
         //Order order = orderRepository.getById(id);
         //workOrderRepository.findByOrderId(id);
