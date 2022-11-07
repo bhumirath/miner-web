@@ -53,8 +53,9 @@ public class OrderController {
         if (result.hasErrors())
             return "order-add";
 
+        order.setOrderStatus("Not Finish");
         service.create(order);
-        return "redirect:/menu";
+        return "redirect:/status";
     }
 
 }

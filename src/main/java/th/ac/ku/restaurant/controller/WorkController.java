@@ -10,6 +10,8 @@ import th.ac.ku.restaurant.model.WorkOrder;
 import th.ac.ku.restaurant.repository.WorkOrderRepository;
 import th.ac.ku.restaurant.service.WorkOrderService;
 
+import java.util.List;
+
 @Controller
 public class WorkController {
 
@@ -32,6 +34,9 @@ public class WorkController {
         workOrder.setWorkStatus("Finish");
         workOrderRepository.save(workOrder);
 
+        //List<WorkOrder> workOrderList;
+        //workOrderList = workOrderRepository.findWorkOrderByFkOrderWorkOrderStatus("Finish");
+        //workOrderList.
         return "redirect:/work";
     }
 

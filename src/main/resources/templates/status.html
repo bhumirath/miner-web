@@ -35,7 +35,6 @@
                                     <tbody>
                                     <th>ชื่อสินค้า</th>
                                     <th>ลูกค้าที่สั่ง</th>
-                                    <th>วันรับสินค้า</th>
                                     <th>สถานะสินค้า</th>
                                     </tbody>
 
@@ -50,11 +49,11 @@
                                                       </tr>
                                                       -->
 
-                                    <tr th:each="status : ${orders}">
-                                        <td th:text="${status.order.name}"></td>
+                                    <tr th:each="status : ${order}">
+                                        <td th:text="${status.name}"></td>
                                         <td th:text="${status.user.firstName}"></td>
-                                        <td th:text="${status.finishDate}"></td>
-                                        <td class="text-success" th:text="${status.workStatus}"></td>
+                                        <!--<td th:text="${status.finishDate}"></td>-->
+                                        <td class="text-success" th:text="${status.orderStatus}"></td>
                                     </tr>
                                     <!--
                                                       <div sec:authorize="hasRole('ROLE_USER')">

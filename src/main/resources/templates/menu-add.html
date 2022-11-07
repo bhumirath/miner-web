@@ -11,9 +11,9 @@
 <div th:insert="fragments/header :: header"></div>
 
 <div class="container w-50 p-3">
-    <div th:if="${menu.id == null}">
+    <div th:if="${menu.price == 0}">
         <h1 class="display-5">Add Menu</h1></div>
-    <div th:unless="${menu.id == null}">
+    <div th:unless="${menu.price == 0}">
         <h1 class="display-5">Edit Menu</h1></div>
 
     <form action="#" th:action="@{/menu/add}" th:object="${menu}" method="POST">

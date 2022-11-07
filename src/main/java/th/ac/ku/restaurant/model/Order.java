@@ -2,12 +2,10 @@ package th.ac.ku.restaurant.model;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 public class Order {
@@ -18,6 +16,7 @@ public class Order {
     private String name;
     private double price;
     private String category;
+    private String orderStatus;
     private double stock;
 
     @ManyToOne(cascade = CascadeType.MERGE,fetch= FetchType.LAZY)
@@ -74,6 +73,14 @@ public class Order {
 
     public void setStock(double stock) {
         this.stock = stock;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     /*

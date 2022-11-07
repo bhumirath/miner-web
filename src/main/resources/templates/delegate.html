@@ -44,7 +44,7 @@
     <div class="mb-3">
       <label>รายละเอียด Order</label>
       <select th:field="*{order.id}" class="form-control" >
-        <option th:value="${orders.id}" th:text="${orders.id}"></option>
+        <option th:value="${orders.id}" th:text="${orders.name} + ' จาก: ' + ${orders.user.firstName}"></option>
       </select>
     </div>
 

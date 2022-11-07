@@ -16,7 +16,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body bg-primary text-white mailbox-widget pb-0">
-          <h2 class="text-white pb-3">รายการสินค้า</h2>
+          <h2 class="text-white pb-3">Order</h2>
           <ul class="nav nav-tabs custom-tab border-bottom-0 mt-4" id="myTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active" id="inbox-tab" data-toggle="tab" aria-controls="inbox" href="#inbox" role="tab" aria-selected="true">
@@ -57,8 +57,11 @@
                       <td th:text="${order.price}+' '+บาท"></td>
                       <td th:text="${order.category}"></td>
                       <td th:text="${order.stock}+' '+ตัน"></td>
+                        <td th:text="${order.orderStatus}"></td>
                       <!--<td th:field="*{order.id}"></td>-->
                       <td><a class="btn btn-outline-success" th:href="@{/delegate/{orderId}(orderId=${order.id})}">แจกจ่ายงาน</a></td>
+                        <td><a class="btn btn-outline-success" th:href="@{/finishOrder/{orderId}(orderId=${order.id})}">เสร็จ</a></td>
+                        <td><a class="btn btn-outline-danger" th:href="@{/notFinishOrder/{orderId}(orderId=${order.id})}">ไม่เสร็จ</a></td>
                       &nbsp;
                       <!--<td><a class="btn btn-outline-danger" th:href="@{/delete/{orderId}(orderId=${order.id})}">Delete</a></td>-->
                     </tr>

@@ -17,6 +17,7 @@
         <thead>
         <tr>
             <th>ชื่อสินค้า</th>
+            <th>Idของออเดอร์</th>
             <th>ชื่อลูกค้า</th>
             <th>สถานะงาน</th>
             <th>ตำแหน่งงาน</th>
@@ -27,6 +28,7 @@
         <tbody>
         <tr th:each="work : ${works}">
             <td th:text="${work.order.name}"></td>
+            <td th:text="${work.order.id}"></td>
             <td th:text="${work.user.firstName}"></td>
             <td class="text-success" th:text="${work.workStatus}"></td>
             <td th:text="${work.workRole}"></td>

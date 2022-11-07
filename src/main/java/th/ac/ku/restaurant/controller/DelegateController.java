@@ -13,6 +13,7 @@ import org.thymeleaf.util.DateUtils;
 import th.ac.ku.restaurant.model.Order;
 import th.ac.ku.restaurant.model.WorkOrder;
 import th.ac.ku.restaurant.repository.OrderRepository;
+import th.ac.ku.restaurant.repository.UserRepository;
 import th.ac.ku.restaurant.repository.WorkOrderRepository;
 import th.ac.ku.restaurant.service.OrderService;
 import th.ac.ku.restaurant.service.SignupService;
@@ -28,6 +29,10 @@ public class DelegateController {
 
     @Autowired
     private SignupService userService;
+
+    @Autowired
+    private UserRepository userRepository;
+
     @Autowired
     private OrderService orderService;
 
@@ -42,11 +47,13 @@ public class DelegateController {
 
     @GetMapping("/delegate/{orderId}")
     public String getDelegate(Model model,@PathVariable(value = "orderId") int id) {
+        //userRepository.findByRole("ROLE_ADMIN");
 
         Order order = orderRepository.getById(id);
         model.addAttribute("orders", order);
         model.addAttribute("newWorkOrder", new WorkOrder());
-        model.addAttribute("userSet",userService.getAll());
+        model.addAttribute("userSet",userRepository.findByRole("ROLE_ADMIN"));
+        //model.addAttribute("userSet",userService.getAll());
         return "delegate";
     }
 
@@ -84,6 +91,30 @@ public class DelegateController {
         //workOrderRepository.findByOrderId(id);
 
         orderRepository.delete(order);
+        //workOrderRepository.deleteByOrderId(id);
+        //workOrderRepository.
+        //workOrderRepository.deleteById(id);
+        return "redirect:/inbox";
+    }
+
+    @GetMapping("/finishOrder/{orderId}")
+    public String finishOrder(Model model,@PathVariable(value = "orderId") int id) {
+        Order order = orderRepository.getById(id);
+        //workOrderRepository.findByOrderId(id);
+
+        order.setOrderStatus("Finish");
+        orderRepository.save(order);
+        //workOrderRepository.deleteById(id);
+        return "redirect:/inbox";
+    }
+
+    @GetMapping("/notFinishOrder/{orderId}")
+    public String notFinishOrder(Model model,@PathVariable(value = "orderId") int id) {
+        Order order = orderRepository.getById(id);
+        //workOrderRepository.findByOrderId(id);
+
+        order.setOrderStatus("Not Finish");
+        orderRepository.save(order);
         //workOrderRepository.deleteById(id);
         return "redirect:/inbox";
     }
