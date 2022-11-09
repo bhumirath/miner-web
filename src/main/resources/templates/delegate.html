@@ -79,6 +79,12 @@
            th:errors="*{finishDate}"></div>
 </div>
 
+
+    <div th:if="${#fields.hasErrors('global')}">
+      <h3></h3>
+      <p th:each="err : ${#fields.errors('global')}" th:text="${err}" class="text-danger"  ></p>
+    </div>
+
     <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
 
   </form>

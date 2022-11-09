@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import th.ac.ku.restaurant.repository.UserRepository;
 import th.ac.ku.restaurant.repository.WorkOrderRepository;
 import th.ac.ku.restaurant.service.OrderService;
 import th.ac.ku.restaurant.service.SignupService;
+import th.ac.ku.restaurant.service.ValidateService;
 import th.ac.ku.restaurant.service.WorkOrderService;
 
 import javax.validation.Valid;
@@ -45,6 +47,9 @@ public class DelegateController {
     @Autowired
     private WorkOrderService workOrderService;
 
+    @Autowired
+    private ValidateService validateService;
+
     @GetMapping("/delegate/{orderId}")
     public String getDelegate(Model model,@PathVariable(value = "orderId") int id) {
         //userRepository.findByRole("ROLE_ADMIN");
@@ -61,6 +66,12 @@ public class DelegateController {
 
     @PostMapping("/delegate")
     public String delegateOrder(Model model, @Valid @ModelAttribute("newWorkOrder") WorkOrder workOrder, BindingResult result) {
+        String err = validateService.validateUser(workOrder);
+        if (!err.isEmpty()) {
+            ObjectError error = new ObjectError("globalError", err);
+            result.addError(error);
+        }
+
         if (result.hasErrors()) {
         model.addAttribute("newWorkOrder", workOrder);
         model.addAttribute("userSet", userRepository.findByRole("ROLE_ADMIN"));
