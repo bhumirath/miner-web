@@ -1,14 +1,18 @@
 package th.ac.ku.restaurant.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class WorkOrder {
     @Id
     @GeneratedValue
@@ -19,8 +23,13 @@ public class WorkOrder {
     private String workRole;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //@FutureOrPresent(message = "date must be present or future")
+    //@FutureOrPresent(message = "startDate Must be today or future")
+    @NotNull(message = "ระบุวันเริ่มงาน")
     private Date startDate;
 
+    //@Future(message = "date must be future")
+    @NotNull(message = "ระบุวันจบงาน")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date finishDate;
 
@@ -91,5 +100,6 @@ public class WorkOrder {
     public void setUser(User user) {
         this.user = user;
     }
+
 
 }

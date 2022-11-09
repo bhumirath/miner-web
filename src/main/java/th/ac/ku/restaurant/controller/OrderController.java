@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import th.ac.ku.restaurant.model.Menu;
 import th.ac.ku.restaurant.model.Order;
+import th.ac.ku.restaurant.model.User;
 import th.ac.ku.restaurant.repository.MenuRepository;
 import th.ac.ku.restaurant.repository.OrderRepository;
 import th.ac.ku.restaurant.repository.UserRepository;
@@ -44,19 +45,40 @@ public class OrderController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName().toString();
         Menu menu = menuRepository.getById(id);
-        model.addAttribute("newOrder", new Order());
-        model.addAttribute("orderName", menu);
-        model.addAttribute("userIdd", userRepository.findByUsername(username));
+        User user = userRepository.findByUsername(username);
+        Order order = new Order();
+        order.setName(menu.getName());
+        order.setPrice(menu.getPrice());
+        order.setCategory(menu.getCategory());
+        //order.setOrderStatus("Not Finish");
+        //order.setUser(userRepository.findByUsername(username));
+        model.addAttribute("newOrder", order);
+        //model.addAttribute("orderName", menu);
+        model.addAttribute("userIdd", user);
         return "order-add";
     }
 
     @PostMapping("/add")
-    public String addMenu(@Valid @ModelAttribute("newOrder") Order order, BindingResult result, Model model) {
-        if (result.hasErrors())
-            return "order-add";
+    public String addMenu(@Valid @ModelAttribute("newOrder") Order order,BindingResult result, Model model) {
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName().toString();
+        User user = userRepository.findByUsername(username);
+
+        if (result.hasErrors()){
+            model.addAttribute("newOrder",order);
+            model.addAttribute("userIdd",user);
+            return "order-add";
+        }
+        //@ModelAttribute("userIdd") User user, @ModelAttribute("orderName") Menu menu ,@Valid @ModelAttribute("userIdd") User user,BindingResult a,@ModelAttribute("orderName") Menu menu
+        //order.setUser(user);
+        //order.setName(menu.getName());
+        //order.setPrice(menu.getPrice());
+        //order.setCategory(menu.getCategory());
+        //order.setOrderStatus("Not Finish");
         order.setOrderStatus("Not Finish");
-        service.create(order);
+        orderRepository.save(order);
+
         return "redirect:/status";
     }
 

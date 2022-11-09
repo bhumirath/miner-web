@@ -1,13 +1,20 @@
 package th.ac.ku.restaurant.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Order {
     @Id
     @GeneratedValue
@@ -17,6 +24,8 @@ public class Order {
     private double price;
     private String category;
     private String orderStatus;
+    @Min(value = 1, message = "Stock must have at least 1")
+    @Max(value = 20000, message = "Stock max is 20000")
     private double stock;
 
     @ManyToOne(cascade = CascadeType.MERGE,fetch= FetchType.LAZY)

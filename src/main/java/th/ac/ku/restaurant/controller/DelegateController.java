@@ -50,8 +50,10 @@ public class DelegateController {
         //userRepository.findByRole("ROLE_ADMIN");
 
         Order order = orderRepository.getById(id);
-        model.addAttribute("orders", order);
-        model.addAttribute("newWorkOrder", new WorkOrder());
+        WorkOrder workOrder = new WorkOrder();
+        workOrder.setOrder(order);
+        //model.addAttribute("orders", order);
+        model.addAttribute("newWorkOrder", workOrder);
         model.addAttribute("userSet",userRepository.findByRole("ROLE_ADMIN"));
         //model.addAttribute("userSet",userService.getAll());
         return "delegate";
@@ -59,9 +61,12 @@ public class DelegateController {
 
     @PostMapping("/delegate")
     public String delegateOrder(Model model, @Valid @ModelAttribute("newWorkOrder") WorkOrder workOrder, BindingResult result) {
-        if (result.hasErrors())
-            return "delegate";
-        
+        if (result.hasErrors()) {
+        model.addAttribute("newWorkOrder", workOrder);
+        model.addAttribute("userSet", userRepository.findByRole("ROLE_ADMIN"));
+        return "delegate";
+    }
+
         Date startDate = workOrder.getStartDate();
         Date finishDate = workOrder.getFinishDate();
 

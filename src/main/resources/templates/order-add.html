@@ -28,27 +28,33 @@
             <select th:field="*{user.id}" class="form-control" th:value="${userN.id}"></select>
         </div>
         -->
-
         <div class="mb-3">
             <label>ผู้สั่ง Order</label>
             <select th:field="*{user.id}" class="form-control" >
                 <option th:value="${userIdd.id}" th:text="${userIdd.firstName}+' '+${userIdd.lastName}"></option>
-            </select>
+            </select><div class="alert alert-warning" th:if="${#fields.hasErrors('user.id')}"
+                          th:errors="*{user.id}"></div>
         </div>
+            <!--
+            <type  th:field="*{user.id}" class="form-control">
+                <option th:value="*{user.id}" th:text="*{user.username}"></option>
+            </type>
+            -->
 
         <div class="mb-3">
             <label>ชื่อสินค้า</label>
-            <select th:field="*{name}" class="form-control">
-                <option th:value="${orderName.name}" th:text="${orderName.name}"></option>
+            <select th:field= "*{name}" class="form-control">
+                <option th:value ="*{name}" th:text="*{name}"></option>
             </select>
         </div>
 
         <div class="mb-3">
             <label>ราคาต่อหน่วย</label>
-            <select th:field="*{price}" class="form-control">
-                <option th:value="${orderName.price}" th:text="${orderName.price}"></option>
+            <select th:field= "*{price}" class="form-control">
+                <option th:value ="*{price}" th:text="*{price}"></option>
             </select>
         </div>
+
         <!--
         <div class="mb-3">
             <h1>Name : <th:block th:text="${orderName.name}" th:field="*{name}" th:value="${orderName.name}"/></h1>
@@ -71,14 +77,12 @@
         </div>
         -->
         <div class="mb-3">
-            <label for="inputCategory">Grade</label>
-            <select id="inputCategory" class="form-select" th:field="*{category}">
-                <option th:value="${orderName.category}" th:text="${orderName.category}"></option>
+            <label >Grade</label>
+            <select th:field="*{category}" class="form-select">
+                <option th:value= "*{category}" th:text="*{category}"></option>
             </select>
-            <div class="alert alert-warning"
-                 th:if="${#fields.hasErrors('category')}"
-                 th:errors="*{category}"></div>
         </div>
+
         <div class="mb-3">
             <label for="inputStock">จำนวนที่ต้องการสั่ง(ตัน)</label>
             <input id="inputStock" type="text" class="form-control"

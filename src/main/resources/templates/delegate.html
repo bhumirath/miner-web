@@ -42,10 +42,7 @@
     -->
 
     <div class="mb-3">
-      <label>รายละเอียด Order</label>
-      <select th:field="*{order.id}" class="form-control" >
-        <option th:value="${orders.id}" th:text="${orders.name} + ' จาก: ' + ${orders.user.firstName}"></option>
-      </select>
+      <input type="hidden" th:value="*{order.id}" th:field="*{order.id}">
     </div>
 
     <div class="mb-3">
@@ -68,11 +65,19 @@
       </select>
     </div>
 
+    <div>
       <label>วันเริ่มงาน:</label>
       <input type="date" th:field="*{startDate}">
+      <div class="alert alert-warning" th:if="${#fields.hasErrors('startDate')}"
+           th:errors="*{startDate}"></div>
+    </div>
 
+    <div>
       <label>วันจบงาน:</label>
       <input type="date" th:field="*{finishDate}">
+      <div class="alert alert-warning" th:if="${#fields.hasErrors('finishDate')}"
+           th:errors="*{finishDate}"></div>
+</div>
 
     <button id="submit-button" type="submit" class="btn btn-primary">Submit</button>
 

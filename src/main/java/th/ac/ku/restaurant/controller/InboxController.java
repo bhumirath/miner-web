@@ -20,7 +20,7 @@ public class InboxController {
     public String getInboxPage(Model model) {
         //model.addAttribute("workOrder",new WorkOrder());
         model.addAttribute("orders", service.getAll());
-        model.addAttribute("user", signupService.getAll());
+        //model.addAttribute("user", signupService.getAll());
         return "inbox";
     }
 
