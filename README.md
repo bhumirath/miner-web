@@ -1,2 +1,2 @@
 # miner-web
-run http://localhost:8000/
+https://miner-web-app.herokuapp.com/
